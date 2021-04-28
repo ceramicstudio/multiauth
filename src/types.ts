@@ -24,15 +24,15 @@ export type SelectedAuthMethod<Type extends ProviderType> = {
 }
 
 export type AuthState<Type extends ProviderType = 'ethereum'> =
-  | { status: 'DISCONNECTED' }
+  | { status: 'disconnected' }
   | {
-      status: 'CONNECTING'
+      status: 'connecting'
       promise: Deferred<AuthAccount<Type> | null>
       modal: boolean
       provider?: SelectedAuthMethod<Type>
     }
-  | { status: 'CONNECTED'; connected: AuthAccount<Type> }
-  | { status: 'FAILED'; error?: Error }
+  | { status: 'connected'; connected: AuthAccount<Type> }
+  | { status: 'failed'; error?: Error }
 
 export type ProvidersPartialConfigs = {
   ethereum: PartialEthereumConfig

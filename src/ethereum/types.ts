@@ -1,12 +1,17 @@
-import type { AbstractConnector } from '@web3-react/abstract-connector'
+import type { FortmaticConnector } from '@web3-react/fortmatic-connector'
 import type { InjectedConnector } from '@web3-react/injected-connector'
+import type { PortisConnector } from '@web3-react/portis-connector'
+import type { TorusConnector } from '@web3-react/torus-connector'
 import type { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import type { ChainID, ChainIDParams } from 'caip'
 
 export type EthereumProvider = NodeJS.EventEmitter
 
 export type ConnectorTypes = {
+  fortmatic: FortmaticConnector
   injected: InjectedConnector
+  portis: PortisConnector
+  torus: TorusConnector
   walletConnect: WalletConnectConnector
 }
 
@@ -26,20 +31,6 @@ export type ConnectorState<Provider = EthereumProvider> = {
 export type ConnectedState<Provider = EthereumProvider> = ConnectorState<Provider> & {
   account: string
 }
-
-export type ConnectionState<
-  Connector extends AbstractConnector = AbstractConnector,
-  Provider = EthereumProvider
-> =
-  | { status: 'PENDING' }
-  | { status: 'DISCONNECTED' }
-  | { status: 'CONNECTED'; connector: Connector; connected: ConnectedState<Provider> }
-  | {
-      status: 'CONNECTING'
-      connector: Connector
-      promise: Promise<ConnectedState<Provider> | null>
-    }
-  | { status: 'FAILED'; connector: Connector; error?: Error }
 
 export type ConnectorConfig<Key extends ConnectorKey = ConnectorKey> = {
   key: Key

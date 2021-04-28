@@ -1,12 +1,17 @@
 import React from 'react'
 import { Meta, Story } from '@storybook/react'
 
-import { ConnectButton, DisplayState, Provider } from '../src'
+import { ConnectButton, DisplayState, Provider, getEnvEthereumConnectors } from '../src'
+
+const env = getEnvEthereumConnectors('STORYBOOK')
+const connectors = [env.injected, env.walletConnect, env.fortmatic, env.portis, env.torus].filter(
+  Boolean
+)
 
 function Welcome() {
   return (
     <Provider
-      providers={[{ key: 'ethereum' }]}
+      providers={[{ key: 'ethereum', connectors }]}
       theme={{ global: { font: { family: 'sans-serif' } } }}>
       <p>
         <DisplayState />

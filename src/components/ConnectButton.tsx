@@ -16,6 +16,6 @@ export function ConnectButton(props: ConnectButtonProps) {
   }, [connect])
 
   return (
-    <Button label="Connect" {...props} disabled={state.status === 'CONNECTING'} onClick={onClick} />
+    <Button label="Connect" {...props} disabled={state.status === 'connecting'} onClick={onClick} />
   )
 }

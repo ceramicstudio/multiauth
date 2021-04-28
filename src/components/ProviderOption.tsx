@@ -43,7 +43,7 @@ export type ProviderOptionProps = ProviderDisplay & {
 export function ProviderOption({ disabled, label, logo, onClick, selected }: ProviderOptionProps) {
   const selectedIcon = selected ? (
     <SelectedImage>
-      <img alt="" src={selectedIconSrc} />
+      <img alt="✓" src={selectedIconSrc} />
     </SelectedImage>
   ) : null
 

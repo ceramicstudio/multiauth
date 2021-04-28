@@ -7,13 +7,13 @@ export function DisplayState() {
   const state = useMultiAuth()[0]
 
   switch (state.status) {
-    case 'CONNECTED':
+    case 'connected':
       return <Text>Connected with account: {state.connected.accountID.toString()}</Text>
-    case 'CONNECTING':
+    case 'connecting':
       return <Text>Connecting...</Text>
-    case 'DISCONNECTED':
+    case 'disconnected':
       return <Text>Disconnected</Text>
-    case 'FAILED':
+    case 'failed':
       return <Text>Failed to connect: {state.error?.message}</Text>
   }
 }

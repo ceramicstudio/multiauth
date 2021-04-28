@@ -10,3 +10,23 @@ export function deferred<T>(): Deferred<T> {
   })
   return Object.assign(promise, methods) as Deferred<T>
 }
+
+export function getEnvString(key: string): string | null {
+  const value = process.env[key]
+  return typeof value === 'string' && value !== '' ? value : null
+}
+
+export function getEnvStringArray(key: string, separator = ','): Array<string> | null {
+  const value = getEnvString(key)
+  return value ? value.split(separator) : null
+}
+
+export function getEnvInt(key: string, radix = 10): number | null {
+  const value = getEnvString(key)
+  return value ? parseInt(value, radix) : null
+}
+
+export function getEnvIntArray(key: string, separator = ',', radix = 10): Array<number> | null {
+  const values = getEnvStringArray(key, separator)
+  return values ? values.map((v) => parseInt(v, radix)) : null
+}

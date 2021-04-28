@@ -26,14 +26,14 @@ export function useMultiAuth(): [
 
   const internalDisconnect = useCallback(() => {
     ethDisconnect()
-    if (authState.status === 'CONNECTING') {
+    if (authState.status === 'connecting') {
       authState.promise.resolve(null)
     }
   }, [authState, ethDisconnect])
 
   const showConnectModal = useCallback(async () => {
     const promise = deferred<AuthAccount<ProviderType> | null>()
-    void setAuthState({ status: 'CONNECTING', modal: true, promise })
+    void setAuthState({ status: 'connecting', modal: true, promise })
     return await promise
   }, [setAuthState])
 
@@ -44,7 +44,7 @@ export function useMultiAuth(): [
           internalDisconnect()
           return await showConnectModal()
         case 'select':
-          if (authState.status === 'CONNECTING') {
+          if (authState.status === 'connecting') {
             if (!authState.modal) {
               void setAuthState({ ...authState, modal: true })
             }
@@ -53,9 +53,9 @@ export function useMultiAuth(): [
           return await showConnectModal()
         case 'use':
           switch (authState.status) {
-            case 'CONNECTED':
+            case 'connected':
               return authState.connected
-            case 'CONNECTING':
+            case 'connecting':
               if (showConnecting && !authState.modal) {
                 void setAuthState({ ...authState, modal: true })
               }
@@ -70,7 +70,7 @@ export function useMultiAuth(): [
 
   const disconnect = useCallback(() => {
     internalDisconnect()
-    void setAuthState({ status: 'DISCONNECTED' })
+    void setAuthState({ status: 'disconnected' })
   }, [internalDisconnect, setAuthState])
 
   return [authState, connect, disconnect]

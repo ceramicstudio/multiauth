@@ -11,7 +11,9 @@ export function useConnection(): [
   (connector: AbstractConnector) => Promise<ConnectedState | null>,
   () => void
 ] {
-  const { activate, deactivate } = useWeb3React(typeof window === 'undefined' ? undefined : NAMESPACE)
+  const { activate, deactivate } = useWeb3React(
+    typeof window === 'undefined' ? undefined : NAMESPACE
+  )
 
   const connect = useCallback(
     async (connector: AbstractConnector): Promise<ConnectedState | null> => {
