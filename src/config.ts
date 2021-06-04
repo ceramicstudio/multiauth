@@ -25,11 +25,9 @@ export function getConfig(partial: PartialConfig = {}): Config {
   const providers = partial.providers
     ? partial.providers.map((cfg) => {
         const setup = providerSetup[cfg.key]
-        return (setup == null
-          ? cfg
-          : { ...setup.defaults, ...cfg, ...setup.getConfig(cfg) }) as ProviderConfig<
-          typeof cfg['key']
-        >
+        return (
+          setup == null ? cfg : { ...setup.defaults, ...cfg, ...setup.getConfig(cfg) }
+        ) as ProviderConfig<typeof cfg['key']>
       })
     : [getEthereumProvider()]
 

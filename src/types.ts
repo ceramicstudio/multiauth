@@ -48,13 +48,12 @@ export type ProviderConfig<Type extends ProviderType = ProviderType> = Providers
   logo: string
 }
 
-export type PartialProviderConfig<
-  Type extends ProviderType = ProviderType
-> = ProvidersPartialConfigs[Type] & {
-  key: Type
-  label?: string
-  logo?: string
-}
+export type PartialProviderConfig<Type extends ProviderType = ProviderType> =
+  ProvidersPartialConfigs[Type] & {
+    key: Type
+    label?: string
+    logo?: string
+  }
 
 export type Config = {
   providers: Array<ProviderConfig>
